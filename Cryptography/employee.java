@@ -6,11 +6,13 @@ class EmployeeDetails{
 	public String name;
 	public int salary;
 	public int hoursworked;
-	public void getInfo(String name,int salary,int hoursworked)
+	public String companyname;
+	public void getInfo(String name,int salary,int hoursworked,String companyname)
 	{
 		this.name=name;
 		this.salary=salary;
 		this.hoursworked=hoursworked;
+		this.companyname=companyname;
 	}
 	public void addsalary()
 	{
@@ -27,6 +29,14 @@ class EmployeeDetails{
 		}
 	}
 }
+class Location{
+	
+	protected String location;
+	public void getlocation(String location)
+	{
+		this.location=location;
+	}
+}
 class Address extends EmployeeDetails{
 	
 	private String address;
@@ -40,6 +50,29 @@ class Address extends EmployeeDetails{
 		System.out.println("salary is " + salary);
 		System.out.println("Hours Worked " + hoursworked);
 		System.out.println("Address " + address);
+		System.out.println("Company Name " + super.companyname);
+	}
+}
+class contactdetails extends EmployeeDetails{
+	
+	public String phonenumber;
+	public void getphonenumber(String phonenumber)
+	{
+		this.phonenumber=phonenumber;
+	}
+	public void displaywithcontact()
+	{
+		if(phonenumber.length()==10)
+		{
+			System.out.println("Name is " + name);
+			System.out.println("salary is " + salary);
+			System.out.println("Hours Worked " + hoursworked);
+			System.out.println("Company Name " + super.companyname);
+		}
+		else
+		{
+			System.out.println("Invalid");
+		}
 	}
 }
 public class employee{
@@ -47,8 +80,11 @@ public class employee{
 	public static void main(String args[])
 	{
 		Address a=new Address();
-		a.getInfo("Rahul", 50, 7);
+		contactdetails c=new contactdetails();
+		a.getInfo("Rahul", 50, 7,"AAM");
 		a.getaddress("Pune");
 		a.display();
+		c.getphonenumber("9867577890");
+		c.displaywithcontact();
 	}
 }
