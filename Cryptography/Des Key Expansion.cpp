@@ -2,6 +2,24 @@
 #include<bits/stdc++.h>
 using namespace std;
 vector<string>vect;
+string binhexfunc(string strcon)
+{
+	string res="";
+	string func1[16]={"0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"};
+	string func2[16]={"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
+	map<string,string>mp;
+	for(int i=0;i<16;i++)
+	{
+		mp[func1[i]]=func2[i];
+	}
+	for(int i=0;i<strcon.length();i=i+4)
+	{
+		string t=strcon.substr(i,4);
+		string chp=mp[t];
+		res=res+chp;
+	}
+	return res;
+}
 string onebitshift(string str1)
 {
 	char ch=str1[0];
@@ -86,5 +104,9 @@ int main()
 {
 	string key="1010101010111011000010010001100000100111001101101100110011011101";
 	generatekey(key);
-	cout<<vect[1]<<endl;
+	int getkey;
+	cin>>getkey;
+	string ans;
+	ans=binhexfunc(vect[getkey-1]);
+	cout<<ans<<endl;
 }
