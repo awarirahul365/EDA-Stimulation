@@ -2,11 +2,28 @@
 #include<bits/stdc++.h>
 using namespace std;
 vector<string>vect;
+string func1[16]={"0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"};
+string func2[16]={"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
+string hexbinfunc(string keyhex)
+{
+	string r="";
+	map<string,string>mp2;
+	for(int i=0;i<16;i++)
+	{
+		mp2[func2[i]]=func1[i];
+	}
+	for(int i=0;i<keyhex.length();i++)
+	{
+		string pz="";
+		pz=pz+keyhex[i];
+		string chz=mp2[pz];
+		r=r+chz;
+	}
+	return r;
+}
 string binhexfunc(string strcon)
 {
 	string res="";
-	string func1[16]={"0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"};
-	string func2[16]={"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
 	map<string,string>mp;
 	for(int i=0;i<16;i++)
 	{
@@ -102,7 +119,10 @@ void generatekey(string key)
 }
 int main()
 {
-	string key="1010101010111011000010010001100000100111001101101100110011011101";
+	string keyhex;
+	cin>>keyhex;
+	string key;
+	key=hexbinfunc(keyhex);
 	generatekey(key);
 	int getkey;
 	cin>>getkey;
