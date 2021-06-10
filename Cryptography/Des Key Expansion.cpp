@@ -1,9 +1,31 @@
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
+/*123456ABCD132536
+AABB09182736CCDD
+2*/
 vector<string>vect;
 string func1[16]={"0000","0001","0010","0011","0100","0101","0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"};
 string func2[16]={"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
+string initialpermutation(string plaintextbin)
+{
+	int initial_permutation[64] = { 
+	58,50,42,34,26,18,10,2, 
+	60,52,44,36,28,20,12,4, 
+	62,54,46,38,30,22,14,6, 
+	64,56,48,40,32,24,16,8, 
+	57,49,41,33,25,17,9,1, 
+	59,51,43,35,27,19,11,3, 
+	61,53,45,37,29,21,13,5, 
+	63,55,47,39,31,23,15,7 
+	};
+	string strinitpermutation="";
+	for(int i=0;i<plaintextbin.length();i++)
+	{
+		strinitpermutation=strinitpermutation+plaintextbin[initial_permutation[i]-1];
+	}
+	return strinitpermutation;
+}
 string hexbinfunc(string keyhex)
 {
 	string r="";
@@ -119,14 +141,22 @@ void generatekey(string key)
 }
 int main()
 {
+	
+	string plaintext;
 	string keyhex;
+	cin>>plaintext;
 	cin>>keyhex;
 	string key;
+	string plaintextbin;
+	plaintextbin=hexbinfunc(plaintext);
 	key=hexbinfunc(keyhex);
+	string strafterpermutation;
+	strafterpermutation=initialpermutation(plaintextbin);
 	generatekey(key);
 	int getkey;
 	cin>>getkey;
 	string ans;
 	ans=binhexfunc(vect[getkey-1]);
-	cout<<ans<<endl;
+	cout<<ans<<" "<<plaintextbin<<endl;
+	cout<<strafterpermutation<<endl;
 }
